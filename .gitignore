@@ -1,0 +1,33 @@
+# Byte-compiled / packaging
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Environments and secrets
+.venv/
+.env
+.env.*
+!.env.example
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Frontend (created in Phase 1)
+node_modules/
+apps/web/.next/
+apps/web/test-results/
+apps/web/playwright-report/
+coverage/
+
+# Local DEMO database
+data/*.db
+data/*.db-*
+
+# OS
+Thumbs.db
+Desktop.ini

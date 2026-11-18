@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>N Green LeadOS — screen plan (not the application)</title>
+  <style>
+    :root {
+      --ink: #14241c;
+      --forest: #1b4332;
+      --leaf: #2d6a4f;
+      --cream: #f6f3ec;
+      --paper: #fffcf7;
+      --line: #e4ddd0;
+      --muted: #5c6b63;
+      --danger: #8c3a3a;
+      --teal: #1f6f64;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+    }
+    .banner {
+      background: var(--forest);
+      color: #f4f7f4;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      padding: 20px 24px 8px;
+    }
+    h1 { font-size: 22px; margin: 0; font-weight: 650; }
+    h2 { font-size: 18px; margin: 0 0 12px; }
+    .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 88px); }
+    nav {
+      padding: 8px 12px 24px;
+      border-right: 1px solid var(--line);
+    }
+    nav a {
+      display: block;
+      color: var(--forest);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    nav a:hover, nav a:focus { background: #e7f0ea; outline: none; }
+    main { padding: 8px 24px 40px; }
+    section {
+      display: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    section:target { display: block; }
+    body:not(:has(:target)) #login { display: block; }
+    .meta { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .card, .tile, .row, .field {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .tile strong { display: block; font-size: 22px; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .badge {
+      display: inline-block;
+      background: #f3e6c8;
+      color: #6a4b12;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+    .demo {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+    .off { color: var(--danger); font-weight: 650; }
+    button, .ghost {
+      border: 1px solid var(--forest);
+      background: var(--forest);
+      color: white;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font: inherit;
+    }
+    .ghost { background: transparent; color: var(--forest); }
+    .split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; }
+    .kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    @media (max-width: 800px) {
+      .layout, .grid, .split, .kanban { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <p class="banner">Planning wireframe only. This page is not the application, has no database, and does not place calls or search the web.</p>
+  <header class="top">
+    <h1>N Green LeadOS</h1>
+    <p class="meta">Phase 0 screen plan · original layout · routes are targets for later phases</p>
+  </header>
+  <div class="layout">
+    <nav aria-label="Screen plan">
+      <a href="#login">/login</a>
+      <a href="#overview">/overview</a>
+      <a href="#research">/research</a>
+      <a href="#run">/research/runs/[id]</a>
+      <a href="#accounts">/accounts</a>
+      <a href="#account">/accounts/[id]</a>
+      <a href="#imports">/imports</a>
+      <a href="#contacts">/contacts</a>
+      <a href="#calling">/calling</a>
+      <a href="#call">/calls/[id]</a>
+      <a href="#crm">/crm</a>
+      <a href="#tasks">/tasks</a>
+      <a href="#reports">/reports</a>
+      <a href="#settings">/settings</a>
+    </nav>
+    <main>
+      <section id="login">
+        <h2>Staff login</h2>
+        <p class="meta">Route /login · Phase 1 · Supabase Auth. No password is stored in this wireframe.</p>
+        <form class="card" action="#overview">
+          <p class="field">Work email</p>
+          <p class="field">Password</p>
+          <p><button type="submit">Continue</button></p>
+          <p class="meta">Read-only stakeholders reach the same shell with editing and calling hidden by the server, not only by this nav.</p>
+        </form>
+      </section>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p class="meta">Route /overview · counts come from the API. Until the database is connected, tiles stay blank.</p>
+        <div class="grid">
+          <div class="tile">Research candidates<strong>—</strong><span class="meta">not connected</span></div>
+          <div class="tile">Approved accounts<strong>—</strong><span class="meta">not connected</span></div>
+          <div class="tile">Permissioned contacts<strong>—</strong><span class="meta">not connected</span></div>
+          <div class="tile">Qualified opportunities<strong>—</strong><span class="meta">not connected</span></div>
+          <div class="tile">Meetings<strong>—</strong><span class="meta">not connected</span></div>
+          <div class="tile">Won<strong>—</strong><span class="meta">not connected</span></div>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>Research studio</h2>
+        <p class="meta">Route /research · Phase 3 starts search. Phase 4 adds extraction. A missing provider key must show DEMO, never a fake live success.</p>
+        <div class="split">
+          <div class="card">
+            <p>Industry, product, region, result limit, spend cap</p>
+            <p><span class="demo">DEMO</span> provider key absent</p>
+            <p><button type="button">Start run (not wired)</button></p>
+          </div>
+          <div class="card">
+            <p class="meta">Run list is empty.</p>
+            <p>No searches have been executed.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="run">
+        <h2>Research run</h2>
+        <p class="meta">Route /research/runs/[id] · queries, sources, errors, cancel. Errors stay visible.</p>
+        <div class="card">No run selected. Provider outage would show the error text and a retry control.</div>
+      </section>
+
+      <section id="accounts">
+        <h2>Accounts</h2>
+        <p class="meta">Route /accounts · Phase 2. Sample labels stay hypotheses.</p>
+        <table>
+          <thead>
+            <tr><th>Company</th><th>Label</th><th>Product hypotheses</th><th>Industry</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Zepto</td>
+              <td><span class="badge">Reference target – not verified</span></td>
+              <td>Carry Bags, Grocery Bags, Garbage Bags, Garbage Bags on Rolls</td>
+              <td>Unassigned</td>
+            </tr>
+            <tr>
+              <td>Amazon</td>
+              <td><span class="badge">Reference target – not verified</span></td>
+              <td>Courier Bags</td>
+              <td>Unassigned</td>
+            </tr>
+            <tr>
+              <td>Amazon Fresh</td>
+              <td><span class="badge">Reference target – not verified</span></td>
+              <td>Separate business unit. Not merged with Amazon.</td>
+              <td>Unassigned</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="account">
+        <h2>Account workspace</h2>
+        <p class="meta">Route /accounts/[id] · evidence, products, contacts, notes, calls, audit.</p>
+        <div class="card">
+          <p><strong>Zepto</strong> <span class="badge">Reference target – not verified</span></p>
+          <p>Source origin: reference sheet. Need status: hypothesis. No phone number is shown because none was supplied.</p>
+        </div>
+      </section>
+
+      <section id="imports">
+        <h2>Imports</h2>
+        <p class="meta">Route /imports · Phase 2. Preview, row errors, duplicate conflicts, then commit.</p>
+        <div class="card">Drop a CSV here in the future app. This wireframe does not upload a file.</div>
+      </section>
+
+      <section id="contacts">
+        <h2>Contacts and permission</h2>
+        <p class="meta">Route /contacts · Phase 5. A company can exist with no contact.</p>
+        <div class="card">Permission: unknown. <span class="off">Do not call.</span> Public listing is not consent.</div>
+      </section>
+
+      <section id="calling">
+        <h2>Calling queue</h2>
+        <p class="meta">Route /calling · Phase 6 is the simulator. Phase 7 live calling stays off.</p>
+        <div class="card">
+          <p><span class="demo">DEMO</span> <span class="off">Live calling is off.</span></p>
+          <p>The queue lists only contacts with a recorded permission basis. It is empty.</p>
+          <p><button type="button" class="ghost">Simulate call (not wired)</button></p>
+        </div>
+      </section>
+
+      <section id="call">
+        <h2>Call review</h2>
+        <p class="meta">Route /calls/[id] · transcript only when consent allows it. Insights need a person before CRM changes.</p>
+        <div class="card">No call. A do-not-call outcome would suppress the destination and block another attempt.</div>
+      </section>
+
+      <section id="crm">
+        <h2>CRM</h2>
+        <p class="meta">Route /crm · stages are separate from research status and from calling permission.</p>
+        <div class="kanban">
+          <div class="card">Research<p class="meta">empty</p></div>
+          <div class="card">Validated<p class="meta">empty</p></div>
+          <div class="card">Outreach eligible<p class="meta">permission required</p></div>
+          <div class="card">Won<p class="meta">manual only</p></div>
+        </div>
+      </section>
+
+      <section id="tasks">
+        <h2>Tasks</h2>
+        <p class="meta">Route /tasks · owner, due date, status. None yet.</p>
+        <div class="card">No tasks.</div>
+      </section>
+
+      <section id="reports">
+        <h2>Reports</h2>
+        <p class="meta">Route /reports · Phase 8. Charts render only from stored rows.</p>
+        <div class="card">No funnel. An empty database shows an empty state, not a sample chart.</div>
+      </section>
+
+      <section id="settings">
+        <h2>Settings</h2>
+        <p class="meta">Route /settings · taxonomy, roles, budgets, audit, retention. Owner/admin.</p>
+        <div class="card">Voice live enabled: false. Research provider: DEMO until a key exists.</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
