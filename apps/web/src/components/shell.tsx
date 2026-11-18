@@ -124,6 +124,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <p>
             {health?.auth_mode === "demo" ? "DEMO sign-in" : "Staff sign-in"}
             {health?.database === "sqlite" ? " · local database" : ""}
+            {health?.database === "mock" ? " · preview data" : ""}
             {health?.research_mode === "live" ? " · live search" : " · DEMO search"}
             {health?.voice_mode === "armed" ? " · live calling armed" : " · live calling disabled"}
           </p>

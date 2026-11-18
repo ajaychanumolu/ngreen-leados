@@ -6,7 +6,7 @@ import { BrandMark } from "@/components/brand-mark";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/button";
-import { ApiRequestError, api, type Health } from "@/lib/api";
+import { api, type Health } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 
 const DEMO_ACCOUNTS = [
@@ -50,7 +50,7 @@ export default function LoginPage() {
       setToken(result.access_token);
       router.replace("/overview");
     } catch (reason) {
-      setError(reason instanceof ApiRequestError ? reason.message : "Sign in failed.");
+      setError(reason instanceof Error ? reason.message : "Sign in failed.");
       setPending(false);
     }
   }

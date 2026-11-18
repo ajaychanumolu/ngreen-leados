@@ -1,3 +1,5 @@
+import { mockApi, mockEnabled } from "@/lib/mock-demo";
+
 export type Health = {
   status: string;
   auth_mode: string;
@@ -286,6 +288,9 @@ export class ApiRequestError extends Error {
 const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
 
 export async function api<T>(path: string, token: string | null, init: RequestInit = {}): Promise<T> {
+  if (mockEnabled()) {
+    return mockApi(path, init) as T;
+  }
   const headers = new Headers(init.headers);
   if (init.body) {
     headers.set("Content-Type", "application/json");
@@ -311,6 +316,9 @@ export async function api<T>(path: string, token: string | null, init: RequestIn
 }
 
 export async function apiText(path: string, token: string | null): Promise<string> {
+  if (mockEnabled()) {
+    return String(mockApi(path));
+  }
   const headers = new Headers();
   if (token) {
     headers.set("Authorization", `Bearer ${token}`);
